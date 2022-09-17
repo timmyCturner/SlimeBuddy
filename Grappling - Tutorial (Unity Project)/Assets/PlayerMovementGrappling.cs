@@ -10,8 +10,16 @@ public class PlayerMovementGrappling : MonoBehaviour
     public float walkSpeed;
     public float sprintSpeed;
     public float swingSpeed;
-
     public float groundDrag;
+
+    [Header("Animation")]
+    private Animation animArm;
+    private Animation animBody;
+    private Animation animOutline;
+    public GameObject arm;
+    public GameObject avatar;
+    public GameObject avatarOutline;
+    private bool PreWalk;
 
     [Header("Jumping")]
     public float jumpForce;
@@ -56,6 +64,7 @@ public class PlayerMovementGrappling : MonoBehaviour
     public enum MovementState
     {
         freeze,
+        attack,
         grappling,
         swinging,
         walking,
@@ -75,7 +84,7 @@ public class PlayerMovementGrappling : MonoBehaviour
         rb.freezeRotation = true;
 
         readyToJump = true;
-
+        PreWalk = false;
         startYScale = transform.localScale.y;
     }
 
@@ -167,6 +176,23 @@ public class PlayerMovementGrappling : MonoBehaviour
         {
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
+            animArm = arm.GetComponent<Animation>();
+            animBody = avatar.GetComponent<Animation>();
+            animOutline = avatarOutline.GetComponent<Animation>();
+
+            if (rb.velocity != Vector3.zero){
+              animBody.Play("LegsRun");
+              animOutline.Play("LegsRunOutline");
+            }
+            if (Input.GetMouseButtonDown(0)){
+                animArm.Play("SwingDown");
+                //Debug.Log("armDeleage");
+            }
+            else if (rb.velocity != Vector3.zero){
+              if(!animArm.isPlaying)
+                animArm.Play("Walk");
+
+            }
         }
 
         // Mode - Walking
@@ -174,6 +200,24 @@ public class PlayerMovementGrappling : MonoBehaviour
         {
             state = MovementState.walking;
             moveSpeed = walkSpeed;
+            animArm = arm.GetComponent<Animation>();
+            animBody = avatar.GetComponent<Animation>();
+            animOutline = avatarOutline.GetComponent<Animation>();
+
+            if (rb.velocity != Vector3.zero){
+              animBody.Play("LegsWalk");
+              animOutline.Play("LegsWalkOutline");
+            }
+            if(PreWalk){
+                armDeleage();
+            }
+            else if(arm.activeSelf && !PreWalk){
+              Invoke(nameof(PreWalkFun), 0.3f);
+            }
+
+
+
+
         }
 
         // Mode - Air
@@ -182,7 +226,32 @@ public class PlayerMovementGrappling : MonoBehaviour
             state = MovementState.air;
         }
     }
+    private void armDeleage(){
 
+      //AnimationState armState = arm.GetComponent<AnimationState>();
+
+      if (Input.GetMouseButtonDown(0)){
+          animArm.Play("SwingDown");
+          //Debug.Log("armDeleage");
+      }
+      else if (rb.velocity != Vector3.zero){
+        if(!animArm.isPlaying)
+          animArm.Play("Walk");
+
+      }
+      //Debug.Log(armState.name);
+    }
+    private void SwordAttack(){
+      //CanAttack = false;
+      animArm = arm.GetComponent<Animation>();
+      animArm.Play("SwingDown");
+      // Animator anim = CurrentWeapon.GetComponent<Animator>();
+      //anim.SetTrigger("Attack");
+      //StartCoroutine(ResetAttackCooldown());
+    }
+    private void PreWalkFun(){
+      PreWalk = true;
+    }
     private void MovePlayer()
     {
         if (activeGrapple) return;
@@ -313,7 +382,7 @@ public class PlayerMovementGrappling : MonoBehaviour
         Vector3 displacementXZ = new Vector3(endPoint.x - startPoint.x, 0f, endPoint.z - startPoint.z);
 
         Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * trajectoryHeight);
-        Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * trajectoryHeight / gravity) 
+        Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * trajectoryHeight / gravity)
             + Mathf.Sqrt(2 * (displacementY - trajectoryHeight) / gravity));
 
         return velocityXZ + velocityY;
