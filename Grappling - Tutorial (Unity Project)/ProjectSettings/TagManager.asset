@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ledge
   - Enemy
+  - Bullet
+  - Flames
   layers:
   - Default
   - TransparentFX
@@ -19,11 +21,11 @@ TagManager:
   - whatIsWall
   - whatIsGround
   - whatIsLedge
-  - 
-  - 
+  - whatIsEnemy
+  - whatIsBullet
   - whatIsKnife
-  - 
-  - 
+  - whatAreFlames
+  - whatIsAcid
   - 
   - 
   - 
