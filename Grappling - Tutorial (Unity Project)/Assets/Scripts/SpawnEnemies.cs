@@ -6,14 +6,20 @@ public class SpawnEnemies : MonoBehaviour
 {
 
     public GameObject bomber;
+    public GameObject skull;
+    public GameObject blob;
     public Transform orientation;
 
 
-    private float bomberInterval = 30f;
+    public float bomberInterval = 30f;
+    public float skullInterval = 15f;
+    public float blobInterval = 20f;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(spawnEnemy(bomberInterval, bomber));
+        StartCoroutine(spawnEnemy(skullInterval, skull));
+        StartCoroutine(spawnEnemy(blobInterval, blob));
     }
 
     IEnumerator spawnEnemy(float interval, GameObject enemy)
