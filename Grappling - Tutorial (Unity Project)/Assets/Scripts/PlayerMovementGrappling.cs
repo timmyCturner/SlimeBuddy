@@ -207,10 +207,12 @@ public class PlayerMovementGrappling : MonoBehaviour
             if (rb.velocity != Vector3.zero){
               animBody.Play("LegsWalk");
               animOutline.Play("LegsWalkOutline");
+              if(PreWalk)
+                if(!animArm.isPlaying)
+                  animArm.Play("Walk");
             }
-            if(PreWalk){
-                //armDeleage();
-            }
+
+
             else if(arm.activeSelf && !PreWalk){
               Invoke(nameof(PreWalkFun), 0.3f);
             }
@@ -226,21 +228,7 @@ public class PlayerMovementGrappling : MonoBehaviour
             state = MovementState.air;
         }
     }
-    //private void armDeleage(){
-    //
-    //   //AnimationState armState = arm.GetComponent<AnimationState>();
-    //
-    //   if (Input.GetMouseButtonDown(0)){
-    //       //animArm.Play("SwingDown");
-    //       //Debug.Log("armDeleage");
-    //   }
-    //   else if (rb.velocity != Vector3.zero){
-    //     if(!animArm.isPlaying)
-    //       animArm.Play("Walk");
-    //
-    //   }
-    //   //Debug.Log(armState.name);
-    // }
+
     // private void SwordAttack(){
     //   //CanAttack = false;
     //   animArm = arm.GetComponent<Animation>();

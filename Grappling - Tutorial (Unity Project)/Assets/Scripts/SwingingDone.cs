@@ -29,7 +29,7 @@ public class SwingingDone : MonoBehaviour
 
     [Header("Input")]
     public KeyCode swingKey = KeyCode.Mouse0;
-    
+
 
     void Update()
     {
@@ -39,6 +39,8 @@ public class SwingingDone : MonoBehaviour
         CheckForSwingPoints();
 
         if (joint != null) OdmGearMovement();
+
+
     }
 
     void LateUpdate()
@@ -99,7 +101,7 @@ public class SwingingDone : MonoBehaviour
 
         float distanceFromPoint = Vector3.Distance(player.position, swingPoint);
 
-        // the distance grapple will try to keep from grapple point. 
+        // the distance grapple will try to keep from grapple point.
         joint.maxDistance = distanceFromPoint * 0.8f;
         joint.minDistance = distanceFromPoint * 0.25f;
 
