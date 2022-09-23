@@ -44,7 +44,7 @@ public class EnemyMovement : MonoBehaviour
     private RaycastHit slopeHit;
     private bool exitingSlope;
 
-    public Transform Player;
+    private Transform Player;
     public Transform orientation;
 
     float horizontalInput;
@@ -74,6 +74,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
+        Player =  GameObject.Find("Player").transform;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 

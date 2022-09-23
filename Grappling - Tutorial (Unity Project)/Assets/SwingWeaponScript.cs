@@ -17,6 +17,7 @@ public class SwingWeaponScript : MonoBehaviour
     private bool isAttacking;
 
     //Damage
+    
     [Header("Control")]
     public int damage;
     private bool targetHit;
@@ -69,13 +70,13 @@ public class SwingWeaponScript : MonoBehaviour
     }
     private void IsAttacking()
     {
-        Debug.Log("Attack");
+        //Debug.Log("Attack");
         //ResetTrigger();
         isAttacking = false;
     }
     void OnTriggerStay(Collider collision) {
       // Debug.Log("Hit1");
-       Debug.Log(isAttacking);
+       //Debug.Log(isAttacking);
       if (collision.gameObject.tag != "Player" && isAttacking)
       {
 
