@@ -8,6 +8,7 @@ public class WeaponSelection : MonoBehaviour
     // Start is called before the first frame update
     public List<GameObject> Weapons;
     public GameObject Arm;
+    
     private GameObject CurrentWeapon;
     private GameObject PrevWeapon;
     private int WeaponNumber;
@@ -52,7 +53,10 @@ public class WeaponSelection : MonoBehaviour
               anim.Play("growArm");
             }
             else{
-              PrevWeapon = Weapons[WeaponNumber];
+
+                PrevWeapon = Weapons[WeaponNumber];
+
+
               if(Input.GetAxis("Mouse ScrollWheel") > 0){
                   WeaponNumber = (WeaponNumber + 1);
                   if(WeaponNumber>=Weapons.Count){
@@ -72,6 +76,8 @@ public class WeaponSelection : MonoBehaviour
         }
     }
     public void ScrollHelperSetWeapon(){
+
+
       CurrentWeapon = Weapons[WeaponNumber];
       CurrentWeapon.SetActive(true);
       PrevWeapon.SetActive(false);
