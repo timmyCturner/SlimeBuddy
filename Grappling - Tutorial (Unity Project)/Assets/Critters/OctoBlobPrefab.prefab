@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 75
+  selected: 0
 --- !u!114 &4913674885722336119
 MonoBehaviour:
   m_ObjectHideFlags: 0

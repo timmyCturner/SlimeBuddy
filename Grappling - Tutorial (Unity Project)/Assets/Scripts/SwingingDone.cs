@@ -7,6 +7,7 @@ public class SwingingDone : MonoBehaviour
     [Header("References")]
     public LineRenderer lr;
     public Transform gunTip, cam, player;
+    public GameObject grappleGunObject;
     public LayerMask whatIsGrappleable;
     public PlayerMovementGrappling pm;
 
@@ -33,12 +34,15 @@ public class SwingingDone : MonoBehaviour
 
     void Update()
     {
+      if (grappleGunObject.activeSelf){
         if (Input.GetKeyDown(swingKey)) StartSwing();
         if (Input.GetKeyUp(swingKey)) StopSwing();
 
         CheckForSwingPoints();
 
         if (joint != null) OdmGearMovement();
+      }
+
 
 
     }

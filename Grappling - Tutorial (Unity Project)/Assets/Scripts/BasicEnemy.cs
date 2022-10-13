@@ -6,6 +6,13 @@ public class BasicEnemy : MonoBehaviour
 {
     [Header("Stats")]
     public int health;
+    //public String type = "basic";
+    public enum EnemyType
+    {
+        Basic,
+        Bomb
+    }
+    public EnemyType selected = EnemyType.Basic;
 
     public void TakeDamage(int damage)
     {
@@ -13,14 +20,43 @@ public class BasicEnemy : MonoBehaviour
         health -= damage;
 
         if (health <= 0){
-          DestroyEnemy();
-          //Invoke("DestroyEnemy", 0.2f);
+
+
+          if (selected == EnemyType.Bomb){
+            int children = gameObject.transform.childCount;
+           for (int i = 0; i < children; ++i){
+             GameObject child = transform.GetChild(i).gameObject;
+             if (child.name == "Explosion"){
+
+               child.SetActive(true);
+             }
+             else{
+               child.SetActive(false);
+             }
+           }
+               //print("For loop: " + transform.GetChild(i));
+            // foreach (Transform child in gameObject.allChildren() ){
+            //   if (child.name == "Explosion"){
+            //     child.SetActive(true);
+            //   }
+            //   else{
+            //     child.SetActive(false);
+            //   }
+            // }
+            //GameObject explosion = gameObject.transform.Find("Explosion").gameObject;
+            //explosion.GetComponent<Detonate>.DetonateSelf();
+
+            Invoke("DestroyEnemy", 3f);
+          }
+          else
+            DestroyEnemy();
         }
 
     }
 
     public void DestroyEnemy()
     {
+
         Destroy(gameObject);
     }
 }

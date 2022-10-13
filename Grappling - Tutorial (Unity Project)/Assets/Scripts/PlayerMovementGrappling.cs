@@ -82,7 +82,9 @@ public class PlayerMovementGrappling : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-
+        animArm = arm.GetComponent<Animation>();
+        animBody = avatar.GetComponent<Animation>();
+        animOutline = avatarOutline.GetComponent<Animation>();
         readyToJump = true;
         PreWalk = false;
         startYScale = transform.localScale.y;
@@ -121,7 +123,8 @@ public class PlayerMovementGrappling : MonoBehaviour
         if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
             readyToJump = false;
-
+            // animBody.Play("LegsJump");
+            // animOutline.Play("JumpOutline");
             Jump();
 
             Invoke(nameof(ResetJump), jumpCooldown);
@@ -227,6 +230,11 @@ public class PlayerMovementGrappling : MonoBehaviour
         else
         {
             state = MovementState.air;
+
+              animBody.Play("LegsAir");
+              animOutline.Play("AirOutline");
+
+
         }
     }
 

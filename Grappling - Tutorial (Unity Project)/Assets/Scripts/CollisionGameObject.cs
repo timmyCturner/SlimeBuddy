@@ -8,10 +8,10 @@ public class CollisionGameObject: MonoBehaviour
       if (collision.gameObject.tag == "Enemy")
       {
           //If the GameObject has the same tag as specified, output this message in the console
-          Debug.Log("Enemy Hit");
+          //Debug.Log("Enemy Hit");
       }
       else{
-        Debug.Log(collision.gameObject.tag);
+        //Debug.Log(collision.gameObject.tag);
       }
     }
     //Detect collisions between the GameObjects with Colliders attached

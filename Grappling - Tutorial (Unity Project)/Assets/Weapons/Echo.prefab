@@ -132,13 +132,13 @@ MonoBehaviour:
     m_Bits: 64
   bounciness: 0
   useGravity: 0
-  explosionDamage: 10
-  explosionRange: 3
+  explosionDamage: 1
+  explosionRange: 2
   explosionForce: 0
-  maxCollisions: 0
+  maxCollisions: 1
   maxLifetime: 25
   explodeOnTouch: 1
-  EnemyGun: 0
+  EnemyGun: 1
 --- !u!54 &1256275623896750946
 Rigidbody:
   m_ObjectHideFlags: 0

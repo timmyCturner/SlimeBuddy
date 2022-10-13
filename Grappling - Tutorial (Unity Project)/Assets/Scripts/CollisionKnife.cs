@@ -56,7 +56,7 @@ public class CollisionKnife: MonoBehaviour
 
             enemy.TakeDamage(damage);
 
-            Debug.Log("Hit");
+            //Debug.Log("Hit");
             // destroy projectile
             //Destroy(gameObject);
             //rb.isKinematic = true;

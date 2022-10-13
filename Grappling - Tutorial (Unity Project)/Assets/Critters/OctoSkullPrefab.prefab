@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 30
+  selected: 0
 --- !u!114 &450710536403864374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,8 +99,8 @@ MonoBehaviour:
   groundDrag: 4
   MaxDist: 10
   MinDist: 5
-  avatar: {fileID: 0}
-  avatarOutline: {fileID: 0}
+  avatar: {fileID: 919132149029795225}
+  avatarOutline: {fileID: 7887184917095705860}
   jumpForce: 5
   jumpCooldown: 0.5
   airMultiplier: 0.4

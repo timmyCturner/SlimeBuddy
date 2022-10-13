@@ -8,6 +8,7 @@ public class Grappling : MonoBehaviour
     private PlayerMovementGrappling pm;
     public Transform cam;
     public Transform gunTip;
+    public GameObject grappleGunObject;
     public LayerMask whatIsGrappleable;
     public LineRenderer lr;
 
@@ -34,10 +35,12 @@ public class Grappling : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(grappleKey)) StartGrapple();
+        if (grappleGunObject.activeSelf){
+          if (Input.GetKeyDown(grappleKey)) StartGrapple();
 
-        if (grapplingCdTimer > 0)
-            grapplingCdTimer -= Time.deltaTime;
+          if (grapplingCdTimer > 0)
+              grapplingCdTimer -= Time.deltaTime;
+        }
     }
 
     private void LateUpdate()
